@@ -1,0 +1,14 @@
+### 集成算法修改调研
+##### 调研情况
+1. 六个集成算法使用框架分别为：Tensorflow、Darknet、caffe2、Keras
+2. Horovod分布式训练支持框架：Tensorflow、Keras、Pytorch、MXNet
+3. Dartnet不支持分布式训练。
+4. Caffe2被并入Pytorch，正在查找其分布式训练方式相关文档。
+
+##### 问题
+1. Horovod支持的几个框架本身就支持分布式训练，所以在原基础做插件，可以不涉及框架核心部分。如tensorflow就是自定义op来实现的。
+
+##### 解决方法
+1. Caffe2自己的分布式训练，Dartnet分布式框架实现。
+2. Caffe2、Dartnet分布式框架实现。
+实现难度：相当于自研一个分布式框架。需要深入了解dartnet和caffe2，同时由于框架设计的时候可能没考虑到多机分布式情况，不能保证是否可行。实现语言难度。
